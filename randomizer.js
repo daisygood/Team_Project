@@ -1,4 +1,3 @@
-// sample JSON format
 
 function randomizer(dataWeRetrievedFromYelpJSON){
         
@@ -332,11 +331,39 @@ var data = {
     }
 
 
-randomizer(data)
+//randomizer(data)
 
 
-function appendInfoToElement(business){
 
-
-    
+function appendInfoToElement(data, id){
+  var el = '#'+ id + '> .thumbnail';
+  var content = randomizer(data);
+  var name = '<h2>'+content.name+'</h2>';
+  var address = '',contentHTMl=';';
+  var link = '<p><button class="btn btn-default">'+'<a target="_blank" href="'+ content.url + '">Learn More</a>'+"</button></p>";
+  var review = '<img src="' + content.rating_img_url_large + '">'
+  content.location.display_address.forEach(function(add){
+    address += '<p>' + add + '</p>'
+  });
+  contentHTML = name + address + review + link;
+  $(el).append(contentHTML);
 }
+
+$(document).ready(function(){
+  appendInfoToElement(data, 'one');
+  appendInfoToElement(data, 'two');
+  appendInfoToElement(data, 'three');
+  appendInfoToElement(data, 'four');
+  appendInfoToElement(data, 'five');
+  appendInfoToElement(data, 'six');
+  $('#randomize').click(function(){
+    $('.thumbnail').empty();
+    appendInfoToElement(data, 'one');
+    appendInfoToElement(data, 'two');
+    appendInfoToElement(data, 'three');
+    appendInfoToElement(data, 'four');
+    appendInfoToElement(data, 'five');
+    appendInfoToElement(data, 'six');
+      return false;
+  })
+})
