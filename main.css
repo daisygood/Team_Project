@@ -8,7 +8,7 @@ body {
 }
 
 .main {
-  height: 600px;
+  height: 500px;
   background: url("https://static.pexels.com/photos/5317/food-salad-restaurant-person.jpg")no-repeat center center;
   background-size: cover;
   text-align:center;
@@ -18,16 +18,39 @@ body {
   margin:100px auto;
   font-size:64px;
 }
-
-.footer{
-  height: 100px;
+#userInput{
+  background:transparent;
+  border:0px;
+  border-bottom: 3px #e52364 solid;
+  margin-right:10px;
+  font-size:20px;
+  color:#fff;
+  padding:0px 5px;
+}
+.main .btn-default{
   background-color:#e52364;
   color:#fff;
+  font-size: 20px;
+  padding:5px 20px;
+  border:0px;
+}
+.main .btn-default:hover{
+  color:#e52364;
+  background-color:#fff;  
+}
+.content{
+  height:500px;
+}
+.footer{
+  height: 80px;
+  background-color:#e52364;
+  color:#fff;
+  margin:0px;
 }
 .footer .container{
-  padding:35px;
+  padding:25px;
 }
-.footer .right{
+.footer .left{
   float:left;
   font-size:20px;
 }
