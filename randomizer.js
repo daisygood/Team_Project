@@ -3,12 +3,17 @@
 function randomizer(dataWeRetrievedFromYelpJSON){
         
     var randomInt = Math.floor(Math.random() * dataWeRetrievedFromYelpJSON["businesses"].length)
-    console.log(dataWeRetrievedFromYelpJSON["businesses"][randomInt]["name"])
+
+
+
+
+    console.log(dataWeRetrievedFromYelpJSON["businesses"][randomInt])
+    return dataWeRetrievedFromYelpJSON["businesses"][randomInt]
 
 
 }
 
-var data = dataWeRetrievedFromYelpJSON = {
+var data = {
         "region": {
             "span": {
                 "latitude_delta": 0.011952160000006984, 
