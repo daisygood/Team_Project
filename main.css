@@ -1,0 +1,34 @@
+body {
+  margin: 0px;
+  font-family:Calibri;
+}
+
+.container {
+  max-width: 940px;
+}
+
+.main {
+  height: 600px;
+  background: url("https://static.pexels.com/photos/5317/food-salad-restaurant-person.jpg")no-repeat center center;
+  background-size: cover;
+  text-align:center;
+}
+.main .container h1{
+  color:#fff;
+  margin:100px auto;
+  font-size:64px;
+}
+
+.footer{
+  height: 100px;
+  background-color:#e52364;
+  color:#fff;
+}
+.footer .container{
+  padding:35px;
+}
+.footer .right{
+  float:left;
+  font-size:20px;
+}
+
