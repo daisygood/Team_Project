@@ -2,16 +2,21 @@
 <html>
 <head>
 	<title></title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript" src="OAuth.js"></script>
+  <script type="text/javascript" src="SHA1.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="randomizer.js"></script>
 	<link rel='stylesheet' href='main.css'>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
-<body>
+
 <body>
 <div class="main">
 	<div class="container">
       	<h1>See What's Good In Your Neighbourhood</h1>
       	<input id='userInput' placeholder="enter zipcode">
-      	<button class='btn-default'>Randomize</button>
+      	<button id='randomize' class='btn btn-default'>Randomize</button>
     </div>
 </div>
 
@@ -19,13 +24,30 @@
 	<div class='container'>
 		<div class='row'>
 			<div class='col-md-4' id='one'>
-				
+				<div class="thumbnail">
+				</div>
 			</div>
 			<div class='col-md-4' id='two'>
-				
+				<div class="thumbnail">
+				</div>
 			</div>
-			<div class='colr-md-4' id='three'>
-				
+			<div class='col-md-4' id='three'>
+				<div class="thumbnail">
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-4' id='four'>
+				<div class="thumbnail">
+				</div>
+			</div>
+			<div class='col-md-4' id='five'>
+				<div class="thumbnail">
+				</div>
+			</div>
+			<div class='col-md-4' id='six'>
+				<div class="thumbnail">
+				</div>
 			</div>
 		</div>
 	</div>
@@ -38,5 +60,5 @@
 </div>
 
 </body>
-</body>
+
 </html>
