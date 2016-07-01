@@ -332,9 +332,11 @@ var data = {
     }
 
 
-
-
-
-
-
 randomizer(data)
+
+
+function appendInfoToElement(business){
+
+
+    
+}
