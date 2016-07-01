@@ -5,8 +5,6 @@ function randomizer(dataWeRetrievedFromYelpJSON){
     var randomInt = Math.floor(Math.random() * dataWeRetrievedFromYelpJSON["businesses"].length)
 
 
-
-
     console.log(dataWeRetrievedFromYelpJSON["businesses"][randomInt])
     return dataWeRetrievedFromYelpJSON["businesses"][randomInt]
 
