@@ -1,8 +1,9 @@
-function cb(data) {        
-        console.log("cb: " + JSON.stringify(data));
+
+
+function setAuth(){
+    function cb(data) {        
+            console.log("cb: " + JSON.stringify(data));
 }
-
-
 
     var auth = {
         //
@@ -47,11 +48,10 @@ function cb(data) {
     var parameterMap = OAuth.getParameterMap(message.parameters);
 
     grabYelpData();
-
 // when randomize button is clicked
 
 function onClickRandomize(content){
-    $('#randomize').click(function(){
+        $('#randomize').click(function(){
         $('.thumbnail').empty();
         grabYelpDataV2(function(content){
             var data = content
@@ -109,6 +109,7 @@ function grabYelpData(){
 }
         
 function grabYelpDataV2(successCB){
+    setAuth();
         $.ajax({
         'url' : message.action,
         'data' : parameterMap,
@@ -133,3 +134,12 @@ function grabYelpDataV2(successCB){
 
 
 }
+
+
+
+}
+
+
+
+
+setAuth()
