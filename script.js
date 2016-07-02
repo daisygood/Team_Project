@@ -18,7 +18,7 @@
                 };
         
                 var terms = 'food';
-                var near = 94605;
+                var near = $('#zipCode').val() || 94605;
         
                 var accessor = {
                     consumerSecret : auth.consumerSecret,
@@ -43,20 +43,51 @@
                 OAuth.SignatureMethod.sign(message, accessor);
         
                 var parameterMap = OAuth.getParameterMap(message.parameters);
-                    
-                $.ajax({
-                    'url' : message.action,
-                    'data' : parameterMap,
-                    'dataType' : 'jsonp',
-                    'jsonpCallback' : 'cb',
-                    'cache': true
-                })
-                .done(function(data, textStatus, jqXHR) {
-                        console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-                    }
-                )
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                                    console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-                        }
-                );
+                grabYelpData();
+
+
+function grabYelpData(){
+
+        $.ajax({
+        'url' : message.action,
+        'data' : parameterMap,
+        'dataType' : 'jsonp',
+        'jsonpCallback' : 'cb',
+        'cache': true
+    })
+    .success(
+
+
+
+        (function(content){
+            var data = content
+          appendInfoToElement(data, 'one');
+          // appendInfoToElement(data, 'two');
+          // appendInfoToElement(data, 'three');
+          // appendInfoToElement(data, 'four');
+          // appendInfoToElement(data, 'five');
+          // appendInfoToElement(data, 'six');
+          $('#randomize').click(function(){
+            $('.thumbnail').empty();
+            appendInfoToElement(data, 'one');
+            // appendInfoToElement(data, 'two');
+            // appendInfoToElement(data, 'three');
+            // appendInfoToElement(data, 'four');
+            // appendInfoToElement(data, 'five');
+            // appendInfoToElement(data, 'six');
+              return false;
+          })
+        })
+    )
+    .done(function(data, textStatus, jqXHR) {
+            console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+        }
+    )
+    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+            }
+    );
+
+
+}
         

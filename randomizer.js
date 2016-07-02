@@ -10,7 +10,7 @@ function randomizer(dataWeRetrievedFromYelpJSON){
 
 }
 
-var data = {
+var data = grabYelpData();/*{
         "region": {
             "span": {
                 "latitude_delta": 0.011952160000006984, 
@@ -330,7 +330,7 @@ var data = {
         ]
     }
 
-
+*/
 //randomizer(data)
 
 
@@ -349,21 +349,23 @@ function appendInfoToElement(data, id){
   $(el).append(contentHTML);
 }
 
-$(document).ready(function(){
-  appendInfoToElement(data, 'one');
-  appendInfoToElement(data, 'two');
-  appendInfoToElement(data, 'three');
-  appendInfoToElement(data, 'four');
-  appendInfoToElement(data, 'five');
-  appendInfoToElement(data, 'six');
-  $('#randomize').click(function(){
-    $('.thumbnail').empty();
-    appendInfoToElement(data, 'one');
-    appendInfoToElement(data, 'two');
-    appendInfoToElement(data, 'three');
-    appendInfoToElement(data, 'four');
-    appendInfoToElement(data, 'five');
-    appendInfoToElement(data, 'six');
-      return false;
-  })
-})
+
+
+// $(document).ready(function(){
+//   appendInfoToElement(data, 'one');
+//   appendInfoToElement(data, 'two');
+//   appendInfoToElement(data, 'three');
+//   appendInfoToElement(data, 'four');
+//   appendInfoToElement(data, 'five');
+//   appendInfoToElement(data, 'six');
+//   $('#randomize').click(function(){
+//     $('.thumbnail').empty();
+//     appendInfoToElement(data, 'one');
+//     appendInfoToElement(data, 'two');
+//     appendInfoToElement(data, 'three');
+//     appendInfoToElement(data, 'four');
+//     appendInfoToElement(data, 'five');
+//     appendInfoToElement(data, 'six');
+//       return false;
+//   })
+// })
