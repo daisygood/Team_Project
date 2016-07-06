@@ -14,9 +14,6 @@ body {
   text-align:center;
 }
 ​
-​
-​
-​
 .main .container h1{
   color:#fff;
   margin:100px auto;
@@ -67,10 +64,12 @@ body {
   margin-top:10px;
 }
 .footer{
-  height: 80px;
+​
   background-color:#e52364;
   color:#fff;
   margin:0px;
+  height: 80px;
+  
 }
 .footer .container{
   padding:35px;
