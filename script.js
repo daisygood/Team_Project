@@ -2,7 +2,7 @@
 // put the oauth code into a function that can be called
 // #zipCode.val() will be saved when the page loads and we have entered something
 // in the box
-function loadPage(){
+
     function cb(data) {        
             console.log("cb: " + JSON.stringify(data));
     }
@@ -17,7 +17,10 @@ function loadPage(){
     };
 
     var terms = 'food';
-    var near = $('#zipCode').val() || 94605;
+    function near(){
+        return $('#zipCode').val() || 94605;
+    }
+    //var near = $('#zipCode').val() || 94605;
 
     var accessor = {
         consumerSecret : auth.consumerSecret,
@@ -26,7 +29,7 @@ function loadPage(){
 
     var parameters = [];
     parameters.push(['terms',terms]);
-    parameters.push(['location', near]);
+    parameters.push(['location', near()]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
@@ -69,10 +72,8 @@ function loadPage(){
     function onClickRandomize(){
         $('#randomize').click(function(){
             $('.thumbnail').empty();
-            grabYelpDataV2(function(content){
-                var data = content;
-                appendInfoToElement(data);
-            })
+            near = $('#zipCode').val() || 94605;
+            grabYelpData();
         })
     }
 
@@ -113,7 +114,6 @@ function loadPage(){
 
     */
     function grabYelpDataV2(successCB){
-        loadPage();
             $.ajax({
             'url' : message.action,
             'data' : parameterMap,
@@ -132,16 +132,11 @@ function loadPage(){
             }
         )
         .fail(function(jqXHR, textStatus, errorThrown) {
-                            console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-                }
+                console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+
+            }
         );
 
 
     }
 
-}
-
-
-
-// ini/tal start of the webpage
-loadPage()
