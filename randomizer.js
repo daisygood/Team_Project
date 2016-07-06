@@ -5,14 +5,32 @@ function randomizer(dataWeRetrievedFromYelpJSON){
     return dataWeRetrievedFromYelpJSON["businesses"][randomInt]
 }
 
+function grab6Restaurants(dataWeRetrievedFromYelpJSON){
+    var restaurants = [];
+
+    while(restaurants.length < 6){
+        var currentSeleciton = randomizer(dataWeRetrievedFromYelpJSON)
+        if(restaurants.indexOf(currentSeleciton) === -1  ){
+            restaurants.push(currentSeleciton)
+        }
+
+    }
+
+    return restaurants
+}
+
 //var data = grabYelpData();
 var ids = ['#one > .thumbnail', '#two > .thumbnail','#three > .thumbnail', 
 '#four > .thumbnail', '#five > .thumbnail', '#six > .thumbnail'];
 
 function appendInfoToElement(data){
+     $('.thumbnail').empty();
     //this function randomly choose one set of data, and converts data to DOM
+    sixRandomlySelectedRestaurantsArr = grab6Restaurants(data);
+
     function createElement(data){
-        var content = randomizer(data); 
+        // var content = randomizer(data); 
+        var content = data; 
         var name = '<h2>'+content.name+'</h2>';
         var address = '',contentHTMl=';';
         var link = '<p><button class="btn btn-default">'+'<a target="_blank" href="'+ content.url + '">Learn More</a>'+"</button></p>";
@@ -24,7 +42,9 @@ function appendInfoToElement(data){
         return contentHTML  
     }
     //append to page
-    ids.forEach(function(val){
-        $(val).append(createElement(data))
+    ids.forEach(function(val, index){
+        $(val).append(createElement(sixRandomlySelectedRestaurantsArr[index]))
     })
 }
+
+
