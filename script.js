@@ -1,8 +1,8 @@
 
 // put the oauth code into a function that can be called
 // #zipCode.val() will be saved when the page loads and we have entered something
-// in the box
-
+// in the boxx
+var grabYelpData = function(){
     function cb(data) {        
             console.log("cb: " + JSON.stringify(data));
     }
@@ -17,10 +17,7 @@
     };
 
     var terms = 'food';
-    function near(){
-        return $('#zipCode').val() || 94605;
-    }
-    //var near = $('#zipCode').val() || 94605;
+    var near = $('#zipCode').val() || 94605;
 
     var accessor = {
         consumerSecret : auth.consumerSecret,
@@ -29,7 +26,7 @@
 
     var parameters = [];
     parameters.push(['terms',terms]);
-    parameters.push(['location', near()]);
+    parameters.push(['location', near]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
@@ -48,10 +45,28 @@
     var parameterMap = OAuth.getParameterMap(message.parameters);
     // TODO we are gonna want to use grabYelpDataV2 instead of this,
     // this is low priority though it works for now
-    grabYelpData();
+    
+     $.ajax({
+        'url' : message.action,
+        'data' : parameterMap,
+        'dataType' : 'jsonp',
+        'jsonpCallback' : 'cb',
+        'cache': true
+    })
+    .success(function(content){
+        var data = content;
+        appendInfoToElement(data);
+    })
+    // //.done(function(data, textStatus, jqXHR) {
+    //     console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+    // //})
+    // //.fail(function(jqXHR, textStatus, errorThrown) {
+    //     console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
+    // })
+}
 
     // not working yet but it's supposed to randomize when you hit enter in the textbox
-    function onEnterKeyRandomizer(content){
+function onEnterKeyRandomizer(content){
             $('#randomize').bind("enterKey", function(e){
                $('.thumbnail').empty();
                 grabYelpDataV2(function(content){
@@ -64,79 +79,29 @@
                     $(this).trigger("enterKey");
                 }
             })    
-    }
-
-    /*
-    assign or randomize button to send a ajax call every time it is clicked
-    */
-    function onClickRandomize(){
-        $('#randomize').click(function(){
-            $('.thumbnail').empty();
-            near = $('#zipCode').val() || 94605;
-            grabYelpData();
-        })
-    }
-
-    // intial grab of data 
-    //TODO: the intial load relies on this, refactor the code so we 
-    // we only have to rely on grabYelpDataV2
-    function grabYelpData(){
-            $.ajax({
-            'url' : message.action,
-            'data' : parameterMap,
-            'dataType' : 'jsonp',
-            'jsonpCallback' : 'cb',
-            'cache': true
-        })
-        .success(
-
-            function(content){
-                var data = content;
-              appendInfoToElement(data);
-              onEnterKeyRandomizer(data);
-              onClickRandomize();
-            }
-        )
-        .done(function(data, textStatus, jqXHR) {
-                console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-            }
-        )
-        .fail(function(jqXHR, textStatus, errorThrown) {
-                            console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-                }
-        );
+}
 
 
-    }
-    /*
-    loads the page to grab the zip code value
-    takes a callback that success invokes 
+$(document).ready(function(){
+    grabYelpData();
+    $( "#randomize" ).click(function() {
+        $('.thumbnail').empty();
+        grabYelpData();
+});
+})
 
-    */
-    function grabYelpDataV2(successCB){
-            $.ajax({
-            'url' : message.action,
-            'data' : parameterMap,
-            'dataType' : 'jsonp',
-            'jsonpCallback' : 'cb',
-            'cache': true
-        })
-        .success(
-            function(content){
-                successCB(content)
-            }
-            
-        )
-        .done(function(data, textStatus, jqXHR) {
-                console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-            }
-        )
-        .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log('error[' + errorThrown + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
-
-            }
-        );
-
-
-    }
-
+//still working on error
+/*
+var error = function(){
+    $('#content > .container').empty();
+    var panorama;
+      function initialize() {
+        panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('street-view'),
+            {
+              position: {lat: -77.9523226, lng: 166.4937372},
+              pov: {heading: 165, pitch: 0},
+              zoom: 1
+            });
+      }
+}*/

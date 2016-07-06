@@ -24,7 +24,7 @@ var ids = ['#one > .thumbnail', '#two > .thumbnail','#three > .thumbnail',
 '#four > .thumbnail', '#five > .thumbnail', '#six > .thumbnail'];
 
 function appendInfoToElement(data){
-     $('.thumbnail').empty();
+    $('.thumbnail').empty();
     //this function randomly choose one set of data, and converts data to DOM
     sixRandomlySelectedRestaurantsArr = grab6Restaurants(data);
 
