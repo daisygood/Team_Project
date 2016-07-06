@@ -38,19 +38,16 @@ body {
   color:#e52364;
   background-color:#fff;  
 }
-​
 .content{
   height:800px;
 }
 .content .container{
   padding:50px;
 }
-​
 .thumbnail{
   height:280px;
   text-align:center;
 }
-​
 .thumbnail h2{
   font-size:20px;
 }
@@ -58,10 +55,10 @@ body {
   margin-top:10px;
 }
 .footer{
-  height: 80px;
   background-color:#e52364;
   color:#fff;
   margin:0px;
+  height: 80px;
 }
 .footer .container{
   padding:35px;
