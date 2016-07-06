@@ -6,16 +6,10 @@ function loadPage(){
     function cb(data) {        
             console.log("cb: " + JSON.stringify(data));
     }
-
     var auth = {
-        //
-        // Update with your auth tokens.
-        //
         consumerKey : "Es9ht3VFfnFYk10QR2pzhg",
         consumerSecret : "bh2qaNhokenpiWUoAotx1KUXLJc",
         accessToken : "ySRsbEQ2mrSDz1kLqE6sUTwPD6tXlYQC",
-        // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
-        // You wouldn't actually want to expose your access token secret like this in a real application.
         accessTokenSecret : "c54UCvjC_kllDzJzx0_u2rh68YE",
         serviceProvider : {
             signatureMethod : "HMAC-SHA1"
@@ -31,6 +25,7 @@ function loadPage(){
     };
 
     var parameters = [];
+    parameters.push(['terms',terms]);
     parameters.push(['location', near]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -58,46 +53,33 @@ function loadPage(){
                $('.thumbnail').empty();
                 grabYelpDataV2(function(content){
                     var data = content
-                    appendInfoToElement(data, 'one')
-
+                    appendInfoToElement(data)
                 })
-
             })
-
             $('#randomize').keyup(function(e){
                 if(e.keyCode == 13){
                     $(this).trigger("enterKey");
                 }
-
             })    
     }
 
     /*
     assign or randomize button to send a ajax call every time it is clicked
     */
-    function onClickRandomize(content){
-
-
-            $('#randomize').click(function(){
+    function onClickRandomize(){
+        $('#randomize').click(function(){
             $('.thumbnail').empty();
             grabYelpDataV2(function(content){
-                var data = content
-                appendInfoToElement(data, 'one')
-
-
+                var data = content;
+                appendInfoToElement(data);
             })
-
         })
-
     }
-
-
 
     // intial grab of data 
     //TODO: the intial load relies on this, refactor the code so we 
     // we only have to rely on grabYelpDataV2
     function grabYelpData(){
-            
             $.ajax({
             'url' : message.action,
             'data' : parameterMap,
@@ -107,28 +89,12 @@ function loadPage(){
         })
         .success(
 
-            (function(content){
-                var data = content
-              appendInfoToElement(data, 'one');
+            function(content){
+                var data = content;
+              appendInfoToElement(data);
               onEnterKeyRandomizer(data);
-              onClickRandomize(data);
-
-              // appendInfoToElement(data, 'two');
-              // appendInfoToElement(data, 'three');
-              // appendInfoToElement(data, 'four');
-              // appendInfoToElement(data, 'five');
-              // appendInfoToElement(data, 'six');
-    /*          $('#randomize').click(function(){
-                $('.thumbnail').empty();
-                appendInfoToElement(data, 'one');
-                // appendInfoToElement(data, 'two');
-                // appendInfoToElement(data, 'three');
-                // appendInfoToElement(data, 'four');
-                // appendInfoToElement(data, 'five');
-                // appendInfoToElement(data, 'six');
-                  return false;
-              })
-    */        })
+              onClickRandomize();
+            }
         )
         .done(function(data, textStatus, jqXHR) {
                 console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
@@ -172,8 +138,6 @@ function loadPage(){
 
 
     }
-
-
 
 }
 

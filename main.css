@@ -63,5 +63,7 @@ body {
   background-color:#e52364;
   color:#fff;
   margin:0px;
-
+}
+.footer .container{
+  padding:35px;
 }
