@@ -2,31 +2,22 @@
 body {
   margin: 0px;
 }
-​
 .container {
   max-width: 940px;
 }
-​
 .main {
   height: 500px;
   background: url("https://static.pexels.com/photos/5317/food-salad-restaurant-person.jpg")no-repeat center center;
   background-size: cover;
   text-align:center;
 }
-​
-​
-​
-​
 .main .container h1{
   color:#fff;
   margin:100px auto;
   font-size:64px;
   border: 1px solid #F00;
   background: rgba(229,35,100, 0.6);
-    clear: both;
-    float: left;
 }
-​
 #userInput{
   background:transparent;
   border:0px;
