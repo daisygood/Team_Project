@@ -46,5 +46,3 @@ function appendInfoToElement(data){
         $(val).append(createElement(sixRandomlySelectedRestaurantsArr[index]))
     })
 }
-
-
