@@ -75,6 +75,7 @@ var error = function() {
 }
 
 $(document).on('click', '#randomize', function(e) {
+    $(this).blur();
   $('.alert').remove();
   $('.thumbnail').empty();
   grabYelpData();
@@ -83,6 +84,7 @@ $(document).on('click', '#randomize', function(e) {
 });
 
 $(document).on('click', '#mostReviewed', function(e) {
+    $(this).blur();
   $('.thumbnail').empty();
   grabYelpData('reviewed');
   $('#zipCode').val('');

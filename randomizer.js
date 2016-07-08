@@ -1,15 +1,15 @@
-
-function randomizer(dataWeRetrievedFromYelpJSON){     
-    var randomInt = Math.floor(Math.random() * dataWeRetrievedFromYelpJSON["businesses"].length)
-    //console.log(dataWeRetrievedFromYelpJSON["businesses"][randomInt])
-    return dataWeRetrievedFromYelpJSON["businesses"][randomInt]
+// 
+function randomizer(yelpData){     
+    var randomInt = Math.floor(Math.random() * yelpData["businesses"].length)
+    //console.log(yelpData["businesses"][randomInt])
+    return yelpData["businesses"][randomInt]
 }
 
-function grab6Restaurants(dataWeRetrievedFromYelpJSON){
+function random6Restaurants(yelpData){
     var restaurants = [];
 
     while(restaurants.length < 6){
-        var currentSeleciton = randomizer(dataWeRetrievedFromYelpJSON)
+        var currentSeleciton = randomizer(yelpData)
         if(restaurants.indexOf(currentSeleciton) === -1  ){
             restaurants.push(currentSeleciton)
         }
@@ -23,43 +23,51 @@ function grab6Restaurants(dataWeRetrievedFromYelpJSON){
 var ids = ['#one > .thumbnail', '#two > .thumbnail','#three > .thumbnail', 
 '#four > .thumbnail', '#five > .thumbnail', '#six > .thumbnail'];
 
-function appendInfoToElement(data){
+/*
+after successful ajax call, data arg is what yelp returns
+restaurants arg is for any array of 6 restaurants that do not need to be randomized
+*/
+function appendInfoToElement(data, restaurants){
     $('.thumbnail').empty();
     //this function randomly choose one set of data, and converts data to DOM
-    sixRandomlySelectedRestaurantsArr = grab6Restaurants(data);
+    restaurants = restaurants || random6Restaurants(data);
 
 
     //append to page
     ids.forEach(function(val, index){
-        $(val).append(createElement(sixRandomlySelectedRestaurantsArr[index]))
+        $(val).append(createElement(restaurants[index]))
     })
 }
 
-//pull the most viewed 6 restaurants from the zipcode 
-function mostReviewed(dataWeRetrievedFromYelpJSON) {
+/*
+pull the most viewed 6 restaurants from the zipcode 
+*/
+function mostReviewed(yelpData) {
   var mostReviewedSix = [];
-  dataWeRetrievedFromYelpJSON = dataWeRetrievedFromYelpJSON["businesses"];
+  yelpData = yelpData["businesses"];
   //sort data based on review_count
-  dataWeRetrievedFromYelpJSON = dataWeRetrievedFromYelpJSON.sort(function(a, b) {
+  yelpData = yelpData.sort(function(a, b) {
     return b.review_count - a.review_count
   })
   
   for (var i = 0; i < 6; i++) {
-    mostReviewedSix.push(dataWeRetrievedFromYelpJSON[i]);
+    mostReviewedSix.push(yelpData[i]);
   }
   return mostReviewedSix;
 }
-//append most reviewed to page
+/*
+append most reviewed to page
+*/
 function appendMostReivewedToElement(data) {
   $('.thumbnail').empty();
   var reviewed = mostReviewed(data);
 
-  //append to page
-  ids.forEach(function(val, index) {
-    $(val).append(createElement(reviewed[index]))
-  })
+  appendInfoToElement(data, reviewed)
 }
-// appends the information from the yelp object
+
+/*
+appends the information from the yelp object
+*/
 function createElement(data){
 
     var content = data; 
