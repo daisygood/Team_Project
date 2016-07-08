@@ -63,22 +63,6 @@ var grabYelpData = function() {
     )
 }
 
-// not working yet but it's supposed to randomize when you hit enter in the textbox
-function onEnterKeyRandomizer(content) {
-  $('#randomize').bind("enterKey", function(e) {
-    $('.thumbnail').empty();
-    grabYelpDataV2(function(content) {
-      var data = content
-      appendInfoToElement(data)
-    })
-  })
-  $('#randomize').keyup(function(e) {
-    if (e.keyCode == 13) {
-      $(this).trigger("enterKey");
-    }
-  })
-}
-
 //Error function. When an invalid zipcode is entered, add an error message and show restaurants near '94605'
 var error = function() {
   $('.alert').remove();
@@ -94,6 +78,11 @@ $(document).on('click', '#randomize', function(e) {
   e.preventDefault();
 });
 
-
+$(document).on('click', '#mostReviewed', function(e) {
+  $('.thumbnail').empty();
+  grabYelpData('reviewed');
+  $('#zipCode').val('');
+  e.preventDefault();
+});
 
 grabYelpData();

@@ -46,3 +46,40 @@ function appendInfoToElement(data){
         $(val).append(createElement(sixRandomlySelectedRestaurantsArr[index]))
     })
 }
+
+//pull the most viewed 6 restaurants from the zipcode 
+function mostReviewed(dataWeRetrievedFromYelpJSON) {
+  var mostReviewedSix = [];
+  dataWeRetrievedFromYelpJSON = dataWeRetrievedFromYelpJSON["businesses"];
+  //sort data based on review_count
+  dataWeRetrievedFromYelpJSON = dataWeRetrievedFromYelpJSON.sort(function(a, b) {
+    return b.review_count - a.review_count
+  })
+  
+  for (var i = 0; i < 6; i++) {
+    mostReviewedSix.push(dataWeRetrievedFromYelpJSON[i]);
+  }
+  return mostReviewedSix;
+}
+//append most reviewed to page
+function appendMostReivewedToElement(data) {
+  $('.thumbnail').empty();
+  var reviewed = mostReviewed(data);
+  function createElement(data) {
+    var content = data;
+    var name = '<h2>' + content.name + '</h2>';
+    var address = '',
+      contentHTMl = ';';
+    var link = '<p><button class="btn btn-default">' + '<a target="_blank" href="' + content.url + '">Learn More</a>' + "</button></p>";
+    var review = '<img src="' + content.rating_img_url_large + '">'
+    content.location.display_address.forEach(function(add) {
+      address += '<p>' + add + '</p>'
+    });
+    var contentHTML = name + address + review + link;
+    return contentHTML
+  }
+  //append to page
+  ids.forEach(function(val, index) {
+    $(val).append(createElement(reviewed[index]))
+  })
+}
