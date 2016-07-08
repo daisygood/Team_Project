@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  font-family: 'Muli', sans-serif;
 }
 html,body {
   height: 100%;
@@ -20,6 +21,7 @@ html,body {
   text-align:center;
 }
 .main .container h1{
+  font-family: 'Lobster', cursive;
   color:#fff;
   margin:100px auto;
   font-size:64px;

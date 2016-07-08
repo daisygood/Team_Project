@@ -1,4 +1,4 @@
-var grabYelpData = function() {
+var grabYelpData = function(buttonClicked) {
   function cb(data) {
     console.log("cb: " + JSON.stringify(data));
   }
@@ -51,7 +51,11 @@ var grabYelpData = function() {
     })
     .success(function(content) {
       var data = content;
-      appendInfoToElement(data);
+      if(buttonClicked === 'reviewed'){
+        appendMostReivewedToElement(data)
+      }else{
+        appendInfoToElement(data)
+      }
     })
     // //.done(function(data, textStatus, jqXHR) {
     //     console.log('success[' + data + '], status[' + textStatus + '], jqXHR[' + JSON.stringify(jqXHR) + ']');
