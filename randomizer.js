@@ -1,10 +1,14 @@
-// 
+/*
+takes in a yelp JSON, returns one randomly selected restaurant
+*/
 function randomizer(yelpData){     
     var randomInt = Math.floor(Math.random() * yelpData["businesses"].length)
-    //console.log(yelpData["businesses"][randomInt])
+
     return yelpData["businesses"][randomInt]
 }
-
+/*
+call randomizers and appends the object to restaurants if unique
+*/
 function random6Restaurants(yelpData){
     var restaurants = [];
 
@@ -19,13 +23,16 @@ function random6Restaurants(yelpData){
     return restaurants
 }
 
-//var data = grabYelpData();
+/*
+Array of Dom elements we want to append information
+*/
 var ids = ['#one > .thumbnail', '#two > .thumbnail','#three > .thumbnail', 
 '#four > .thumbnail', '#five > .thumbnail', '#six > .thumbnail'];
 
 /*
-after successful ajax call, data arg is what yelp returns
-restaurants arg is for any array of 6 restaurants that do not need to be randomized
+data is the yelp JSON 
+restaurants is if you have an array of 6 restaurants already
+appends 6 restaurant objects to the DOM
 */
 function appendInfoToElement(data, restaurants){
     $('.thumbnail').empty();
@@ -66,7 +73,7 @@ function appendMostReivewedToElement(data) {
 }
 
 /*
-appends the information from the yelp object
+take properties from restaurant object and format into a HTML line and returns it
 */
 function createElement(data){
 
